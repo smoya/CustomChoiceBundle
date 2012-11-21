@@ -1,0 +1,26 @@
+{
+    "name": "smoya/custom-choice-bundle",
+    "type": "symfony-bundle",
+    "description": "Symfony2 bundle that allows you to use choices stored in database.",
+    "keywords": ["Symfony2", "choice", "custom", "choices"],
+    "homepage": "https://github.com/smoya/CustomChoiceBundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergio Moya",
+            "email": "smoya89@gmail.com"
+        }
+    ],
+    "require": {
+        "php":             ">=5.3.2",
+        "symfony/symfony": ">=2.1",
+        "doctrine/orm":    "*"
+    },
+    "replace": {
+        "smoya/CustomChoiceBundle": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "Smoya\\Bundle\\CustomChoiceBundle": "" }
+    },
+    "target-dir": "Smoya/Bundle/CustomChoiceBundle"
+}

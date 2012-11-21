@@ -1,0 +1,20 @@
+parameters:
+        smoya_customchoice.entity.class: Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoice
+        smoya_customchoice.entity.manager.class: Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoiceManager
+        smoya_customchoice.choicelist.class: Smoya\Bundle\CustomChoiceBundle\Form\Extension\ChoiceList\CustomChoiceList
+        smoya_customchoice.form_type.class: Smoya\Bundle\CustomChoiceBundle\Form\CustomChoiceType
+
+services:            
+    customchoice_manager: 
+        class: %smoya_customchoice.entity.manager.class%
+        arguments: [ @doctrine.orm.entity_manager, @service_container, %smoya_customchoice.entity.class% ]
+
+    customchoice_list:
+        class: %smoya_customchoice.choicelist.class%
+        arguments: [ @doctrine.orm.entity_manager, @customchoice_manager ]
+
+    form.type.customchoice:
+            class: %smoya_customchoice.form_type.class%
+            arguments: [ @doctrine.orm.entity_manager, @customchoice_manager ]
+            tags:
+                -  { name: form.type, alias: customchoice }

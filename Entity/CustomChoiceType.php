@@ -9,17 +9,12 @@
 * file that was distributed with this source code.
 */
 
-namespace Smoya\Bundle\EntityFeaturesBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace Smoya\Bundle\CustomChoiceBundle\Entity;
 
 /**
- * Smoya\Bundle\EntityFeaturesBundle\Entity\ChoiceType
- *
- * @ORM\Table()
- * @ORM\Entity
+ * Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoiceType
  */
-class ChoiceType
+class CustomChoiceType
 {
     protected $id;
 

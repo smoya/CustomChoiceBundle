@@ -11,35 +11,24 @@
 
 namespace Smoya\Bundle\CustomChoiceBundle\Entity;
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Symfony\Component\Validator\Constraint;
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\NoResultException;
 use Smoya\Bundle\CustomChoiceBundle\Form\Extension\ChoiceList\CustomChoiceList;
 
 class CustomChoiceManager
 {
     protected $em;
-    protected $repository;
     protected $class;
-    protected $container;
 
-    /**
-     * Constructor.
-     */
-    public function __construct(EntityManager $em, $container, $class)
+    public function __construct(EntityManager $em)
     {
-        $this->class = $class;
         $this->em = $em;
-        $this->repository = $em->getRepository($class);
-        $this->container = $container;
     }
 
     public function getChoicesByType($type, $viewAll = false, $noMapping = false)
     {
         //TODO Use Constants for not use Join
-
-        $query = $this->em->createQueryBuilder()
+        $qb = $this->em->createQueryBuilder()
             ->select('c, t')
             ->from('SmoyaCustomChoiceBundle:CustomChoice','c')
             ->join('c.type', 't')
@@ -48,14 +37,15 @@ class CustomChoiceManager
             ->addOrderBy('c.name', 'ASC')
         ;
 
-        $viewAll ? $query->where('t.name = :type') : $query->where('t.name = :type AND c.visible = 1');
+        $viewAll ? $qb->where('t.name = :type') : $qb->where('t.name = :type AND c.visible = 1');
 
-        $query = $query->getQuery();
+        $query = $qb->getQuery();
         $query->setParameter('type', $type);
+
         $choices = $query->getResult();
 
         if (!$choices) {
-            throw new NotFoundHttpException('ChoiceType or CustomChoice not found for choiceType \'' . $type . '\'');
+            throw new NoResultException();
         }
 
         if ($this->isDataRange($choices)) {
@@ -68,8 +58,8 @@ class CustomChoiceManager
 
     private function makeDataRange($choices)
     {
-        $max=$choices[0]->getMaxValue();
-        $min=$choices[0]->getMinValue();
+        $max=$choices[0]->getRangeMax();
+        $min=$choices[0]->getRangeMin();
 
         $choices = array();
 

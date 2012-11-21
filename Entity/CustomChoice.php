@@ -9,15 +9,10 @@
  * file that was distributed with this source code.
  */
 
-namespace Smoya\Bundle\EntityFeaturesBundle\Entity;
-
-use Doctrine\ORM\Mapping as ORM;
+namespace Smoya\Bundle\CustomChoiceBundle\Entity;
 
 /**
  * Smoya\Bundle\EntityFeaturesBundle\Entity\CustomChoice
- *
- * @ORM\Entity
- * @ORM\Table()
  */
 class CustomChoice
 {
@@ -31,9 +26,9 @@ class CustomChoice
 
     protected $value;
 
-    protected $minValue;
+    protected $rangeMin;
 
-    protected $maxValue;
+    protected $rangeMax;
 
     protected $dataRange;
 
@@ -119,9 +114,9 @@ class CustomChoice
     /**
      * Set type
      *
-     * @param Smoya\Bundle\EntityFeaturesBundle\Entity\ChoiceType $type
+     * @param Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoiceType $type
      */
-    public function setType(\Smoya\Bundle\EntityFeaturesBundle\Entity\ChoiceType $type)
+    public function setType(\Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoiceType $type)
     {
         $this->type = $type;
     }
@@ -129,7 +124,7 @@ class CustomChoice
     /**
      * Get type
      *
-     * @return Smoya\Bundle\CustomChoiceBundle\Entity\ChoiceType
+     * @return Smoya\Bundle\CustomChoiceBundle\Entity\CustomChoiceType
      */
     public function getType()
     {
@@ -162,43 +157,43 @@ class CustomChoice
     }
 
     /**
-     * Set maxValue
+     * Set rangeMax
      *
-     * @param integer $maxValue
+     * @param integer $rangeMax
      */
-    public function setMaxValue($maxValue)
+    public function setRangeMax($rangeMax)
     {
-        $this->maxValue = $maxValue;
+        $this->rangeMax = $rangeMax;
     }
 
     /**
-     * Get maxValue
+     * Get rangeMax
      *
      * @return integer
      */
-    public function getMaxValue()
+    public function getRangeMax()
     {
-        return $this->maxValue;
+        return $this->rangeMax;
     }
 
     /**
-     * Set minValue
+     * Set rangeMin
      *
-     * @param integer $minValue
+     * @param integer $rangeMin
      */
-    public function setMinValue($minValue)
+    public function setRangeMin($rangeMin)
     {
-        $this->minValue = $minValue;
+        $this->rangeMin = $rangeMin;
     }
 
     /**
-     * Get minValue
+     * Get rangeMin
      *
      * @return integer
      */
-    public function getMinValue()
+    public function getRangeMin()
     {
-        return $this->minValue;
+        return $this->rangeMin;
     }
 
     /**

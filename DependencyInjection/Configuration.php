@@ -1,6 +1,6 @@
 <?php
 
-namespace Utils\CustomChoiceBundle\DependencyInjection;
+namespace Smoya\Bundle\CustomChoiceBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
@@ -13,12 +13,12 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('utils_custom_choice');
+        $rootNode = $treeBuilder->root('smoya_custom_choice');
 
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
-        
+
         return $treeBuilder;
     }
 }

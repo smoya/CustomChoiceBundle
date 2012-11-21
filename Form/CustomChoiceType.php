@@ -11,9 +11,11 @@
 
 namespace Smoya\Bundle\CustomChoiceBundle\Form;
 
+
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Bridge\Doctrine\Form\ChoiceList\EntityChoiceList;
 use Doctrine\ORM\EntityManager;
 use Smoya\Bundle\CustomChoiceBundle\Form\DataTransformer\CustomChoiceToIdTransformer;
 use Smoya\Bundle\CustomChoiceBundle\Form\Extension\ChoiceList\CustomChoiceList;
@@ -52,7 +54,7 @@ class CustomChoiceType extends AbstractType
                         return new CustomChoiceList($choices, null, $noMapping);
                     } elseif (!$choices instanceof CustomChoiceList){
                         // If Choices are Entity choices...
-                        return new EntityChoiceList($em, 'UtilsCustomChoiceBundle:CustomChoice', null, null, $choices);
+                        return new EntityChoiceList($em, 'SmoyaCustomChoiceBundle:CustomChoice', null, null, $choices);
                     } else {
                         return $choices;
                     }
@@ -60,9 +62,6 @@ class CustomChoiceType extends AbstractType
         ));
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getParent()
     {
         return 'choice';

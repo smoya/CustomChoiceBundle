@@ -7,7 +7,7 @@ parameters:
 services:            
     customchoice_manager: 
         class: %smoya_customchoice.entity.manager.class%
-        arguments: [ @doctrine.orm.entity_manager, @service_container, %smoya_customchoice.entity.class% ]
+        arguments: [ @doctrine.orm.entity_manager ]
 
     customchoice_list:
         class: %smoya_customchoice.choicelist.class%
